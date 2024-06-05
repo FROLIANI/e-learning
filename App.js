@@ -4,6 +4,8 @@ import { useFonts } from 'expo-font';
 import LoginScreen from './App/Screen/LoginScreen';
 
 
+
+
 export default function App() {
 
   const [fontsLoaded, fontError] = useFonts({
@@ -14,20 +16,16 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {/* <Text style ={{fontFamily:'outfit'}}>
-        Learn app Development
-        </Text> */}
-      {/* <StatusBar style="auto" /> */}
       <LoginScreen/>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  // container: {
+  //   flex: 1,
+  //   backgroundColor: '#fff',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
 });
