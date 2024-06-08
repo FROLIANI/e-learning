@@ -1,16 +1,27 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import home from "../../assets/images/home.png";
+import * as WebBrowser from "expo-web-browser";
 import Colors from '../Utils/Colors';
+import GoogleLogo from "../../assets/images/GoogleLogo.png"
+
+WebBrowser.maybeCompleteAuthSession();
 
 const LoginScreen = () => {
   return (
+ 
     <View style={styles.container}>
       <Image source={home} style={styles.img} />
       <View style={styles.imgview}>
         <Text style={styles.text1}
         >CodeINC</Text>
-        <Text style ={styles.text2}>Your Ultimate Programming Learning </Text>
+        <Text style={styles.text2}>Your Ultimate Programming Learning </Text>
+
+        <TouchableOpacity style={styles.signWith}>
+          <Image source={GoogleLogo} style={styles.google} />
+          <Text style={styles.googletext}>Sign in with Google </Text>
+        </TouchableOpacity>
+
       </View>
     </View>
   );
@@ -20,7 +31,8 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+
   },
   img: {
     width: 250,
@@ -34,8 +46,8 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: -50,
     padding: 20,
-    borderTopLeftRadius:10,
-    borderTopRightRadius:10
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10
 
   },
 
@@ -45,13 +57,37 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'outfit-bold'
   },
-  text2:{
+  text2: {
     fontSize: 18,
     color: Colors.LIGHT_PRIMARY,
     textAlign: 'center',
     fontFamily: 'outfit'
+  },
 
+  signWith: {
+    backgroundColor: Colors.WHITE,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    justifyContent: 'center',
+    padding: 10,
+    borderRadius: 99,
+    marginTop: 15
+  },
+
+  google: {
+    height: 40,
+    width: 40,
+
+  },
+
+  googletext: {
+    fontSize: 20,
+    color: Colors.PRIMARY,
+    fontFamily: 'outfit',
 
   }
+
 
 });
