@@ -4,10 +4,31 @@ import home from "../../assets/images/home.png";
 import * as WebBrowser from "expo-web-browser";
 import Colors from '../Utils/Colors';
 import GoogleLogo from "../../assets/images/GoogleLogo.png"
+import { useOAuth } from "@clerk/clerk-expo";
+import {useWarmUpBrowser} from "../../hooks/useWarmUpBrowser"
 
 WebBrowser.maybeCompleteAuthSession();
 
 const LoginScreen = () => {
+
+  useWarmUpBrowser();
+
+  const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
+
+  const onPress = React.useCallback(async () => {
+    try {
+      const { createdSessionId, signIn, signUp, setActive } =
+        await startOAuthFlow();
+
+      if (createdSessionId) {
+        setActive({ session: createdSessionId });
+      } else {
+        // Use signIn or signUp for next steps such as MFA
+      }
+    } catch (err) {
+      console.error("OAuth error", err);
+    }
+  }, []);
   return (
  
     <View style={styles.container}>
@@ -17,7 +38,9 @@ const LoginScreen = () => {
         >CodeINC</Text>
         <Text style={styles.text2}>Your Ultimate Programming Learning </Text>
 
-        <TouchableOpacity style={styles.signWith}>
+        <TouchableOpacity 
+        onPress={onPress}
+        style={styles.signWith}>
           <Image source={GoogleLogo} style={styles.google} />
           <Text style={styles.googletext}>Sign in with Google </Text>
         </TouchableOpacity>
