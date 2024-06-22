@@ -36,14 +36,19 @@ export default function App() {
 
     return (
         <ClerkProvider publishableKey={clerkPublishableKey}>
+              <View style={styles.container}>
             <NavigationContainer linking={linking}>
+                
                 <SignedIn>
                     <TabNavigations />
                 </SignedIn>
+
                 <SignedOut>
                     <LoginScreen />
                 </SignedOut>
+
             </NavigationContainer>
+            </View>
         </ClerkProvider>
     );
 }
@@ -52,5 +57,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        marginTop:25
     },
 });
