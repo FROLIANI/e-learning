@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View,Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { useFonts } from 'expo-font';
 import LoginScreen from './App/Screen/LoginScreen';
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
@@ -12,15 +12,14 @@ import * as Linking from 'expo-linking';
 const linking = {
     prefixes: [Linking.createURL('/'), 'elearning://'],
     config: {
-      screens: {
-        HomeScreen: 'HomeScreen',
-        MyCourseScreen: 'MyCourseScreen',
-        LeaderBoardScreen: 'LeaderBoardScreen',
-        ProfileScreen: 'ProfileScreen',
-      },
+        screens: {
+            HomeScreen: 'HomeScreen',
+            MyCourseScreen: 'MyCourseScreen',
+            LeaderBoardScreen: 'LeaderBoardScreen',
+            ProfileScreen: 'ProfileScreen',
+        },
     },
-  };
-  
+};
 
 export default function App() {
     const [fontsLoaded, fontError] = useFonts({
@@ -30,23 +29,21 @@ export default function App() {
     });
 
     const clerkPublishableKey = Constants.expoConfig.extra.clerkPublishableKey;
-    // console.log(clerkPublishableKey);
 
+    if (!fontsLoaded) {
+        return <Text>Loading fonts...</Text>;
+    }
 
     return (
         <ClerkProvider publishableKey={clerkPublishableKey}>
-            <View style={styles.container}>
+            <NavigationContainer linking={linking}>
                 <SignedIn>
-                <Text style={styles.bb} >HELLOO</Text>
-                
-                    <NavigationContainer >
-                        <TabNavigations />
-                    </NavigationContainer>
+                    <TabNavigations />
                 </SignedIn>
                 <SignedOut>
                     <LoginScreen />
                 </SignedOut>
-            </View>
+            </NavigationContainer>
         </ClerkProvider>
     );
 }
@@ -55,14 +52,5 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
     },
-bb:{
-    fontSize: 30,
-    color: 'red',
-    textAlign: 'center',
-
-}
-
 });

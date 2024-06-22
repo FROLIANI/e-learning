@@ -4,19 +4,16 @@ import HomeScreen from '../Screen/HomeScreen';
 import MyCourseScreen from '../Screen/MyCourseScreen';
 import LeaderBoardScreen from '../Screen/LeaderBoardScreen';
 import ProfileScreen from '../Screen/ProfileScreen';
-import { StyleSheet, View ,Text} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigations() {
   return (
-    
-    <Tab.Navigator >
-
-      <Tab.Screen name="HomeScreen" component={HomeScreen} />
-      <Tab.Screen name="MyCourseScreen" component={MyCourseScreen} />
-      <Tab.Screen name="LeaderBoardScreen" component={LeaderBoardScreen} />
-      <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen}/>
+      <Tab.Screen name="My Course" component={MyCourseScreen} />
+      <Tab.Screen name="LeaderBoard" component={LeaderBoardScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
 }
