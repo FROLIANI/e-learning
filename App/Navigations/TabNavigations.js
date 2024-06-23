@@ -8,8 +8,6 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Colors from '../Utils/Colors';
 
-
-
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigations() {
